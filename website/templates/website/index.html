@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Маникюрный салон</title>
+    <link rel="stylesheet" href="{% static 'website/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-4">
+    <!-- ... форма поиска и виджет с результатами поиска ... -->
+
+    <!-- Виджет 1: Топ-3 популярных услуг -->
+    <div class="widget mb-5">
+        <h2>Топ-3 популярных услуг за месяц</h2>
+        <ol class="list-group list-group-numbered">
+            {% for service in popular_services %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="d-flex align-items-center">
+                    {% if service.image %}
+                        <img src="{{ service.image.url }}" alt="{{ service.name }}" class="thumb me-3">
+                    {% endif %}
+                    <div>
+                        <a href="#" class="fs-5">{{ service.name }}</a><br>
+                        <small>Цена: {{ service.price }}₽ • {{ service.duration_minutes }} мин</small>
+                    </div>
+                </div>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-outline-danger btn-sm">❤️</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ol>
+        <a href="{% url 'services_list' %}" class="btn btn-link mt-3">Все услуги →</a>
+    </div>
+
+    <!-- Виджет 2: Лучшие мастера -->
+    <div class="widget mb-5">
+        <h2>Лучшие мастера</h2>
+        <ol class="list-group list-group-numbered">
+            {% for master in top_masters %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="d-flex align-items-center">
+                    {% if master.photo %}
+                        <img src="{{ master.photo.url }}" alt="{{ master.name }}" class="thumb rounded-circle me-3">
+                    {% endif %}
+                    <div>
+                        <a href="#" class="fs-5">{{ master.name }}</a><br>
+                        <small>Специализация: {{ master.specialization }}</small><br>
+                        <small>Рейтинг: {{ master.avg_rating|default:"—" }}★</small>
+                    </div>
+                </div>
+                <a href="{% url 'book_appointment' master.id %}" class="btn btn-success btn-sm">Записаться</a>
+            </li>
+            {% endfor %}
+        </ol>
+        <a href="#" class="btn btn-link mt-3">Все мастера →</a>
+    </div>
+
+    <!-- Виджет 3: Ближайшие акции -->
+    <div class="widget mb-5">
+        <h2>Акции и скидки</h2>
+        <ol class="list-group list-group-numbered">
+            {% for promo in upcoming_promotions %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                {% if promo.image %}
+                    <img src="{{ promo.image.url }}" alt="{{ promo.title }}" class="thumb me-3">
+                {% endif %}
+                <div class="me-auto">
+                    <a href="#" class="fs-5">{{ promo.title }}</a><br>
+                    <small>{{ promo.description|truncatechars:60 }}</small><br>
+                    <small>С {{ promo.start_date }} до {{ promo.end_date }}</small>
+                </div>
+                {% if promo.is_active %}
+                    <span class="badge bg-success align-self-center">Активна</span>
+                {% else %}
+                    <span class="badge bg-secondary align-self-center">Скоро</span>
+                {% endif %}
+                <a href="#" class="btn btn-outline-primary btn-sm ms-3">Подробнее</a>
+            </li>
+            {% endfor %}
+        </ol>
+        <a href="#" class="btn btn-link mt-3">Все акции →</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+/* Общие стили */
+body {
+    background-color: #f9f9fb;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Виджет */
+.widget {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.widget h2 {
+    margin-bottom: 15px;
+    color: #b30086;
+    font-size: 1.5rem;
+}
+
+/* Список внутри виджета */
+.widget ol,
+.widget ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.widget li {
+    padding: 10px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.widget li:last-child {
+    border-bottom: none;
+}
+
+/* Превью-картинки (100×100) */
+.thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Кнопки */
+.btn-link {
+    color: #b30086;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Форма поиска */
+input[type="text"] {
+    width: 300px;
+}
+
+/* Адаптивность: на мобильных экранах виджеты во всю ширину */
+@media (max-width: 576px) {
+    .widget {
+        padding: 15px;
+    }
+    .thumb {
+        width: 50px;
+        height: 50px;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+}
