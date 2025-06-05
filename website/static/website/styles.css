@@ -1,83 +1,273 @@
-/* Общие стили */
+/* Основные стили */
 body {
-    background-color: #f9f9fb;
-    font-family: Arial, sans-serif;
-    color: #333;
+    background-color: #f5eee6 !important;
+    font-family: 'Montserrat', sans-serif;
+    color: #4a4a4a;
+    line-height: 1.7;
     margin: 0;
     padding: 0;
 }
 
 .container {
     max-width: 900px;
-    margin: auto;
-    padding: 20px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-/* Виджет */
+/* Виджеты */
 .widget {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 30px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    background: #f3d7ca;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(210, 180, 160, 0.5);
+}
+
+.widget:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    background: #f8e5dc;
 }
 
 .widget h2 {
-    margin-bottom: 15px;
-    color: #b30086;
+    color: #9d5c5c;
     font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e8c4c4;
 }
 
-/* Список внутри виджета */
-.widget ol,
-.widget ul {
-    margin: 0;
-    padding-left: 20px;
+/* Списки с левым выравниванием */
+.list-group-item {
+    padding: 1.25rem 0;
+    border: none;
+    border-bottom: 1px solid rgba(210, 180, 160, 0.7) !important;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    background: #fcf2ed !important;
 }
 
-.widget li {
-    padding: 10px 5px;
-    border-bottom: 1px solid #eee;
+.list-group-item:last-child {
+    border-bottom: none !important;
+    background-color: #fcf2ed !important;
 }
 
-.widget li:last-child {
-    border-bottom: none;
+.list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
-/* Превью-картинки (100×100) */
+/* Контент - выравнивание по левому краю */
+.list-group-item > div:first-child {
+    flex-grow: 1;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+/* Кнопки - остаются справа */
+.list-group-item > form,
+.list-group-item > a.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Занимает всю высоту элемента */
+    margin-left: 15px;
+    align-self: center;
+}
+
+/* Картинки */
 .thumb {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.thumb:hover {
+    transform: scale(1.03);
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+    border: 2px solid #e8c4c4;
 }
 
 /* Кнопки */
+.btn {
+    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.btn-outline-danger {
+    color: #c86b6b;
+    border-color: #c86b6b;
+    background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+    background-color: #c86b6b;
+    color: white;
+}
+
+.btn-success {
+    background-color: #9d5c5c !important;
+    border-color: #9d5c5c;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #8a4e4e !important;
+    border-color: #8a4e4e;
+}
+
+.btn-outline-primary {
+    color: #9d5c5c;
+    border-color: #9d5c5c;
+    background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+    background-color: #9d5c5c;
+    color: white;
+}
+
+/* Ссылки */
 .btn-link {
-    color: #b30086;
+    color: #9d5c5c;
     text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
 }
 
 .btn-link:hover {
-    text-decoration: underline;
+    color: #7a4646;
+    transform: translateX(5px);
 }
 
-/* Форма поиска */
-input[type="text"] {
-    width: 300px;
+/* Бейджи */
+.badge {
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
 }
 
-/* Адаптивность: на мобильных экранах виджеты во всю ширину */
-@media (max-width: 576px) {
+.bg-success {
+    background-color: #7aa874 !important;
+}
+
+.bg-secondary {
+    background-color: #a8a8a8 !important;
+}
+
+/* Текст */
+.fs-5 {
+    font-weight: 500;
+    color: #4a4a4a;
+    transition: color 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.fs-5:hover {
+    color: #9d5c5c;
+}
+
+small {
+    color: #777;
+    font-size: 0.85rem;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.widget {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
     .widget {
-        padding: 15px;
+        padding: 1.5rem;
     }
+
+    .list-group-item > form,
+    .list-group-item > a.btn {
+        margin-left: 0;
+        margin-top: 10px;
+        height: auto; /* Сбрасываем высоту для мобильной версии */
+    }
+
     .thumb {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
     }
-    input[type="text"] {
-        width: 100%;
+
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
     }
+
+    /* На мобильных кнопки могут занимать всю ширину */
+    .list-group-item {
+        flex-wrap: wrap;
+    }
+
+    .list-group-item > form,
+    .list-group-item > a.btn {
+        margin-left: 0;
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+}
+
+/* Дополнительные эффекты */
+.list-group-numbered {
+    counter-reset: section;
+    background-color: transparent;
+}
+
+.list-group-numbered > li::before {
+    color: #9d5c5c;
+    font-weight: 600;
+}
+
+.d-flex.align-items-center {
+    gap: 1rem;
+}
+
+::selection {
+    background-color: #e8c4c4; /* Терракотовый фон */
+    color: #4a4a4a; /* Основной цвет текста */
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background-color: #e8c4c4;
+    color: #4a4a4a;
+    text-shadow: none;
 }
