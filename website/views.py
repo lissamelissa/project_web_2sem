@@ -4,6 +4,8 @@ from django.db.models import Count, Avg, Q
 from datetime import date, timedelta
 from .models import Service, Master, Promotion, Appointment
 from .forms import AppointmentForm
+from django.contrib.auth import login
+from .forms import RegistrationForm
 
 def index(request):
     # Виджет 1: Топ-3 популярных услуг за последний месяц
@@ -78,3 +80,16 @@ def book_appointment(request, master_id):
     else:
         form = AppointmentForm(initial={'master': master_id, 'client': request.user})
     return render(request, 'website/book_appointment.html', {'form': form})
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            # Не активируем здесь staff или superuser, роль задаётся полем role
+            user.save()
+            login(request, user)  # автоматически логиним нового пользователя
+            return redirect('index')
+    else:
+        form = RegistrationForm()
+    return render(request, 'website/register.html', {'form': form})

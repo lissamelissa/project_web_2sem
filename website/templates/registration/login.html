@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход — Маникюрный Салон</title>
+    <!-- Сначала Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Потом ваши стили -->
+    <link rel="stylesheet" href="{% static 'website/styles.css' %}">
+</head>
+<body>
+    <!-- Шапка сайта (копия из index.html) -->
+    <header class="bg-white shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <a href="{% url 'index' %}" class="text-decoration-none">
+                <h1 class="h4 m-0" style="color: #9d5c5c; font-weight: 700;">Маникюрный Салон</h1>
+            </a>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}" style="color: #4a4a4a; font-weight: 500;">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'login' %}" style="color: #9d5c5c; font-weight: 500;">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}" style="color: #4a4a4a; font-weight: 500;">Регистрация</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="widget mx-auto" style="max-width:400px;">
+            <h2 class="text-center">Вход в аккаунт</h2>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">{{ form.non_field_errors.0 }}</div>
+                {% endif %}
+                <!-- Имя пользователя -->
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">Имя пользователя</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <!-- Пароль -->
+                <div class="mb-3">
+                    <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <div class="text-danger small mt-1">{{ form.password.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Войти</button>
+                </div>
+            </form>
+            <p class="text-center small mt-3">
+                Нет аккаунта? <a href="{% url 'register' %}" class="btn-link">Зарегистрироваться</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
