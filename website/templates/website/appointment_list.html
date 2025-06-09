@@ -1,0 +1,41 @@
+{% extends 'website/base.html' %}
+{% block title %}Записи — Lizini Manikurini{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <div class="crud-wrapper">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Список записей</h2>
+      <a href="{% url 'appointment_add' %}" class="btn btn-success">Новая запись</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Клиент</th>
+          <th>Услуга</th>
+          <th>Мастер</th>
+          <th>Дата</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in appointments %}
+        <tr>
+          <td data-label="#"> {{ a.id }} </td>
+          <td data-label="Клиент"> {{ a.client.username }} </td>
+          <td data-label="Услуга"> {{ a.service.name }} </td>
+          <td data-label="Мастер"> {{ a.master.name }} </td>
+          <td data-label="Дата"> {{ a.appointment_date }} {{ a.appointment_time }} </td>
+          <td data-label="Действия">
+            <a href="{% url 'appointment_detail' a.pk %}" class="btn btn-sm btn-outline-primary me-1">Просмотр</a>
+            <a href="{% url 'appointment_edit' a.pk %}" class="btn btn-sm btn-outline-warning me-1">Править</a>
+            <a href="{% url 'appointment_delete' a.pk %}" class="btn btn-sm btn-outline-danger">Удалить</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

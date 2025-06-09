@@ -6,6 +6,7 @@ from .models import Service, Master, Promotion, Appointment
 from .forms import AppointmentForm
 from django.contrib.auth import login
 from .forms import RegistrationForm
+from django.shortcuts import render, get_object_or_404, redirect
 
 def index(request):
     # Виджет 1: Топ-3 популярных услуг за последний месяц
@@ -93,3 +94,47 @@ def register(request):
     else:
         form = RegistrationForm()
     return render(request, 'website/register.html', {'form': form})
+
+def appointment_list(request):
+    appointments = Appointment.objects.select_related('client','master','service').all()
+    return render(request, 'website/appointment_list.html', {'appointments': appointments})
+
+def appointment_detail(request, pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
+    return render(request, 'website/appointment_detail.html', {'appointment': appointment})
+
+def appointment_add(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            appointment = form.save()
+            return redirect('appointment_detail', pk=appointment.pk)
+    else:
+        form = AppointmentForm()
+    return render(request, 'website/appointment_form.html', {
+        'form': form,
+        'title': 'Новая запись'
+    })
+
+def appointment_edit(request, pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST, instance=appointment)
+        if form.is_valid():
+            form.save()
+            return redirect('appointment_detail', pk=pk)
+    else:
+        form = AppointmentForm(instance=appointment)
+    return render(request, 'website/appointment_form.html', {
+        'form': form,
+        'title': f'Редактировать запись #{pk}'
+    })
+
+def appointment_delete(request, pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
+    if request.method == 'POST':
+        appointment.delete()
+        return redirect('appointment_list')
+    return render(request, 'website/appointment_confirm_delete.html', {
+        'appointment': appointment
+    })

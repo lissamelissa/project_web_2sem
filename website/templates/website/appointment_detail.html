@@ -1,0 +1,21 @@
+{% extends 'website/base.html' %}
+{% block title %}Запись #{{ appointment.id }} — Lizini Manikurini{% endblock %}
+{% block content %}
+<div class="container my-4">
+  <div class="crud-wrapper">
+    <h2>Запись №{{ appointment.id }}</h2>
+    <ul class="list-group mb-4">
+      <li class="list-group-item"><strong>Клиент:</strong> {{ appointment.client.name }}</li>
+      <li class="list-group-item"><strong>Услуга:</strong> {{ appointment.service.name }}</li>
+      <li class="list-group-item"><strong>Мастер:</strong> {{ appointment.master.name }}</li>
+      <li class="list-group-item"><strong>Дата:</strong> {{ appointment.appointment_date }} {{ appointment.appointment_time }}</li>
+      <li class="list-group-item"><strong>Статус:</strong> {{ appointment.status.name }}</li>
+    </ul>
+    <div class="d-flex gap-2">
+      <a href="{% url 'appointment_edit' appointment.pk %}" class="btn btn-outline-warning">Редактировать</a>
+      <a href="{% url 'appointment_delete' appointment.pk %}" class="btn btn-outline-danger">Удалить</a>
+      <a href="{% url 'appointment_list' %}" class="btn btn-link">← назад</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

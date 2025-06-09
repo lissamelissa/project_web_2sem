@@ -1,6 +1,5 @@
-/* Основные стили */
 body {
-    background-color: #f5eee6 !important;
+    background-color: #f5eee6;
     font-family: 'Montserrat', sans-serif;
     color: #4a4a4a;
     line-height: 1.7;
@@ -8,302 +7,326 @@ body {
     padding: 0;
 }
 
+/* Единый контейнер под все страницы */
 .container {
-    max-width: 900px;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 1rem;
 }
 
-/* Виджеты */
+/* =====================
+   Виджеты
+   ===================== */
 .widget {
     background: #f3d7ca;
+    border: 1px solid rgba(210, 180, 160, 0.5);
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    padding: 2rem;
+    padding: 2.5rem;     /* чуть больше "воздуха" */
     margin-bottom: 2.5rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(210, 180, 160, 0.5);
+    transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+    animation: fadeIn 0.6s ease forwards;
 }
-
 .widget:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     background: #f8e5dc;
 }
-
 .widget h2 {
     color: #9d5c5c;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
+    padding-bottom: .75rem;
     border-bottom: 2px solid #e8c4c4;
 }
 
-/* Списки с левым выравниванием */
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================
+   Списки услуг / мастеров
+   ===================== */
 .list-group-item {
-    padding: 1.25rem 0;
-    border: none;
-    border-bottom: 1px solid rgba(210, 180, 160, 0.7) !important;
-    transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
-    background: #fcf2ed !important;
+    padding: 1.25rem 1.5rem;;
+    border: none;
+    border-bottom: 1px solid rgba(210,180,160,0.7);
+    background: #fcf2ed;
+    transition: background .3s ease;
 }
-
 .list-group-item:last-child {
-    border-bottom: none !important;
-    background-color: #fcf2ed !important;
+    border-bottom: none;
 }
-
 .list-group-item:hover {
-    background-color: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255,255,255,0.8);
 }
-
-/* Контент - выравнивание по левому краю */
+/* Первый див внутри LI */
 .list-group-item > div:first-child {
     flex-grow: 1;
-    text-align: left;
     display: flex;
     align-items: center;
 }
-
-/* Кнопки - остаются справа */
+/* Кнопки/формы в конце */
 .list-group-item > form,
 .list-group-item > a.btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%; /* Занимает всю высоту элемента */
     margin-left: 15px;
-    align-self: center;
 }
 
-/* Картинки */
+/* =====================
+   Картинки — thumb & avatar
+   ===================== */
 .thumb {
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 8px;
     margin-right: 15px;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: transform .3s ease;
 }
-
 .thumb:hover {
     transform: scale(1.03);
 }
-
 .rounded-circle {
-    border-radius: 50% !important;
+    border-radius: 50%;
     border: 2px solid #e8c4c4;
 }
 
-/* Кнопки */
+/* =====================
+   Кнопки (общие, outline, success, link)
+   ===================== */
 .btn {
-    transition: all 0.3s ease;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
+    padding: .5rem 1rem;
     border-radius: 8px;
+    font-weight: 500;
+    transition: all .3s ease;
     white-space: nowrap;
 }
-
 .btn-outline-danger {
-    color: #c86b6b;
-    border-color: #c86b6b;
-    background-color: transparent;
+    color: #c86b6b; border-color: #c86b6b;
 }
-
 .btn-outline-danger:hover {
-    background-color: #c86b6b;
-    color: white;
+    background: #c86b6b; color: #fff;
 }
-
 .btn-success {
-    background-color: #9d5c5c !important;
-    border-color: #9d5c5c;
-    color: white;
+    background: #9d5c5c; border-color: #9d5c5c; color: #fff;
 }
-
 .btn-success:hover {
-    background-color: #8a4e4e !important;
-    border-color: #8a4e4e;
+    background: #8a4e4e; border-color: #8a4e4e;
 }
-
 .btn-outline-primary {
-    color: #9d5c5c;
-    border-color: #9d5c5c;
-    background-color: transparent;
+    color: #9d5c5c; border-color: #9d5c5c;
 }
-
 .btn-outline-primary:hover {
-    background-color: #9d5c5c;
-    color: white;
+    background: #9d5c5c; color: #fff;
 }
-
-/* Ссылки */
 .btn-link {
     color: #9d5c5c;
     text-decoration: none;
     font-weight: 500;
+    transition: color .3s ease, transform .3s ease;
     display: inline-flex;
     align-items: center;
-    transition: all 0.3s ease;
 }
-
 .btn-link:hover {
     color: #7a4646;
     transform: translateX(5px);
 }
 
-/* Бейджи */
+/* =====================
+   Формы и селекты
+   ===================== */
+.form-control,
+.form-select,
+input[name="username"],
+input[name="password"] {
+    background: #fcf2ed;
+    color: #4a4a4a;
+    border: 1px solid rgba(210,180,160,0.7);
+    border-radius: 8px;
+    padding: .5rem .75rem;
+    width: 100%;
+    transition: border-color .3s ease, background .3s ease;
+}
+.form-control:focus,
+.form-select:focus,
+input[name="username"]:focus,
+input[name="password"]:focus {
+    border-color: #9d5c5c;
+    background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 .2rem rgba(157,92,92,0.25);
+}
+
+/* =====================
+   Таблицы CRUD
+   ===================== */
+.crud-wrapper {
+    background: #fff;
+    border: 1px solid rgba(210,180,160,0.5);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    overflow-x: auto;           /* скролл если уж узко */
+}
+.crud-wrapper table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.crud-wrapper thead th {
+    background: #f3d7ca;
+    color: #4a4a4a;
+    font-weight: 600;
+    padding: .75rem 1rem;
+    border-bottom: 2px solid rgba(210,180,160,0.7);
+    text-align: left;
+}
+.crud-wrapper tbody td {
+    padding: .75rem 1rem;
+    border-bottom: 1px solid rgba(210,180,160,0.3);
+    vertical-align: middle;
+}
+.crud-wrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+.crud-wrapper tbody tr:hover td {
+    background: rgba(255,255,255,0.8);
+}
+.crud-wrapper .btn-sm {
+    padding: .25rem .5rem;
+    font-size: .85rem;
+}
+
+/* =====================
+   Зебра-полосы для таблиц
+   ===================== */
+.crud-wrapper tbody tr:nth-child(odd) td {
+    background: #fcf2ed;
+}
+.crud-wrapper tbody tr:nth-child(even) td {
+    background: #fff;
+}
+
+/* =====================
+   Адаптивность
+   ===================== */
+@media (max-width: 768px) {
+    .container { padding: 1rem; }
+    .widget { padding: 1.5rem; }
+    .thumb { width: 60px; height: 60px; }
+    .btn { padding: .4rem .8rem; font-size: .9rem; }
+    .list-group-item { flex-wrap: wrap; }
+    .list-group-item > form,
+    .list-group-item > a.btn { margin: .5rem 0 0 0; height: auto; }
+}
+@media (max-width: 576px) {
+    .crud-wrapper thead { display: none; }
+    .crud-wrapper tbody td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .crud-wrapper tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(210,180,160,0.5);
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .crud-wrapper tbody td {
+        padding: .75rem 1rem;
+    }
+    .crud-wrapper tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        display: block;
+        margin-bottom: .25rem;
+        color: #9d5c5c;
+    }
+}
+
+/* =====================
+   Мелочи: бейджи, текст
+   ===================== */
 .badge {
     font-weight: 500;
-    padding: 0.5rem 0.75rem;
+    padding: .5rem .75rem;
     border-radius: 8px;
 }
-
-.bg-success {
-    background-color: #7aa874 !important;
-}
-
-.bg-secondary {
-    background-color: #a8a8a8 !important;
-}
-
-/* Текст */
+.bg-success { background: #7aa874; }
+.bg-secondary { background: #a8a8a8; }
 .fs-5 {
     font-weight: 500;
     color: #4a4a4a;
-    transition: color 0.3s ease;
     margin-bottom: 5px;
+    transition: color .3s ease;
 }
-
-.fs-5:hover {
-    color: #9d5c5c;
-}
-
+.fs-5:hover { color: #9d5c5c; }
 small {
     color: #777;
-    font-size: 0.85rem;
+    font-size: .85rem;
 }
 
-/* Анимации */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* =====================
+   Навигационные кнопки
+   ===================== */
+header nav .btn {
+    padding: 0.5rem 1rem !important;
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+    border: none !important; /* Убираем обводку */
 }
 
-.widget {
-    animation: fadeIn 0.6s ease forwards;
+header nav .btn-outline-primary {
+    color: #9d5c5c !important;
+    background-color: rgba(243, 215, 202, 0.3) !important; /* Полупрозрачный фон */
 }
 
-/* Адаптивность */
+header nav .btn-outline-primary:hover {
+    opacity: 0.8 !important; /* Полупрозрачность */
+    box-shadow: 0 0 10px rgba(157, 92, 92, 0.5) !important; /* Свечение */
+}
+
+header nav .btn-success {
+    background: rgba(157, 92, 92, 0.7) !important; /* Полупрозрачный фон */
+    color: #fff !important;
+    border: none !important;
+}
+
+header nav .btn-success:hover {
+    background: rgba(138, 78, 78, 0.8) !important; /* Чуть темнее */
+}
+
+/* Стиль для активной кнопки */
+header nav .btn.active {
+    opacity: 0.8 !important; /* Полупрозрачность */
+    box-shadow: 0 0 10px rgba(157, 92, 92, 0.5) !important; /* Свечение */
+}
+
+/* Адаптивность для навигации */
 @media (max-width: 768px) {
-    .container {
-        padding: 1rem;
+    header .container {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        padding: 1rem 0 !important;
     }
 
-    .widget {
-        padding: 1.5rem;
+    header nav .btn {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.9rem !important;
     }
-
-    .list-group-item > form,
-    .list-group-item > a.btn {
-        margin-left: 0;
-        margin-top: 10px;
-        height: auto; /* Сбрасываем высоту для мобильной версии */
-    }
-
-    .thumb {
-        width: 60px;
-        height: 60px;
-    }
-
-    .btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    /* На мобильных кнопки могут занимать всю ширину */
-    .list-group-item {
-        flex-wrap: wrap;
-    }
-
-    .list-group-item > form,
-    .list-group-item > a.btn {
-        margin-left: 0;
-        margin-top: 10px;
-        align-self: flex-end;
-    }
-}
-
-/* Дополнительные эффекты */
-.list-group-numbered {
-    counter-reset: section;
-    background-color: transparent;
-}
-
-.list-group-numbered > li::before {
-    color: #9d5c5c;
-    font-weight: 600;
-}
-
-.d-flex.align-items-center {
-    gap: 1rem;
-}
-
-::selection {
-    background-color: #e8c4c4; /* Терракотовый фон */
-    color: #4a4a4a; /* Основной цвет текста */
-    text-shadow: none;
-}
-
-::-moz-selection {
-    background-color: #e8c4c4;
-    color: #4a4a4a;
-    text-shadow: none;
-}
-
-.form-control,
-.form-select {
-    background-color: #fcf2ed !important;         /* совпадает с фоном виджетов */
-    color: #4a4a4a;                    /* основной цвет текста */
-    border: 1px solid rgba(210, 180, 160, 0.7);
-    border-radius: 8px;
-    padding: 0.5rem 0.75rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* При фокусе слегка подсветим границу */
-.form-control:focus,
-.form-select:focus {
-    border-color: #9d5c5c;
-    background-color: #fff !important;
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(157, 92, 92, 0.25);
-}
-
-input[name="username"], input[name="password"] {
-    background-color: #fcf2ed;
-    color: #4a4a4a;
-    border: 1px solid rgba(210, 180, 160, 0.7);
-    border-radius: 8px;
-    padding: 0.5rem 0.75rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    width: 100%;
-}
-
-input[name="username"]:focus, input[name="password"]:focus {
-    border-color: #9d5c5c;
-    background-color: #fff;
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(157, 92, 92, 0.25);
 }

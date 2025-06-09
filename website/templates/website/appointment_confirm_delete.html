@@ -1,0 +1,11 @@
+{% extends 'website/base.html' %}
+{% block title %}Удалить запись #{{ appointment.id }}{% endblock %}
+{% block content %}
+<h2>Удалить запись #{{ appointment.id }}?</h2>
+<p>Клиент: <strong>{{ appointment.client.name }}</strong></p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Да, удалить</button>
+  <a href="{% url 'appointment_detail' appointment.pk %}" class="btn btn-link">Нет, отмена</a>
+</form>
+{% endblock %}
